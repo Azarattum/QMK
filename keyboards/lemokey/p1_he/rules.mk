@@ -4,6 +4,7 @@ JOYSTICK_DRIVER = digital
 # Inscrease stack size to avoid crushing of eeprom_update_block()
 USE_PROCESS_STACKSIZE = 0x2000
 USE_FPU = yes
+RGB_MATRIX_CUSTOM_USER = yes
 
 include keyboards/lemokey/common/analog_matrix/analog_matrix.mk
 include keyboards/lemokey/common/wireless/wireless.mk
