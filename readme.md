@@ -1,3 +1,16 @@
+**This fork adds the following features:**
+- [`5ed88f8`](https://github.com/Azarattum/QMK/commit/5ed88f8a4acf945db7158e2eeccd3a29430c2ed7): Full analog report to support [Wooting Analog SDK](https://github.com/WootingKb/wooting-analog-sdk) via [Universal Analog Plugin](https://github.com/AnalogSense/universal-analog-plugin) (based on [Analog Sense fork](https://github.com/AnalogSense/qmk_firmware/))
+- [`ed360bd`](https://github.com/Azarattum/QMK/commit/ed360bdf7b452f4912c8364c7a357a872d21ee3d): `Fn+Esc` puts the keyboard in bootloader mode
+- [`2e958f9`](https://github.com/Azarattum/QMK/commit/2e958f9c1072b94b0bc4b3ab71123c35f1487a09): Added full-length Bad Apple backlight animation ([yes, you heard it right](https://youtu.be/G8ZrETE6zp8))
+- [`b80ff1f`](https://github.com/Azarattum/QMK/commit/b80ff1fdd85fe8d2eb7c604f02568b8adf5f949f): Added support for per-key RGB configuration with an extended version of [VIA's RGB protocol](https://github.com/the-via/app/blob/80dd7453a2f0a53233cd2c5bcc526847feb17e0e/src/utils/keyboard-api.ts#L372-L384). Full support with OpenRGB can be achieved with [ColorHoster](https://github.com/Azarattum/ColorHoster)
+
+[All the changes](https://github.com/Keychron/qmk_firmware/compare/hall_effect_playground...Azarattum:QMK:hall_effect_custom) are based on [`hall_effect_playground` branch from Keychron](https://github.com/Keychron/qmk_firmware/tree/hall_effect_playground).
+
+**Supported keyboards:**
+- Lemokey P1 HE
+
+> *The changes are quite portable, so you should be able to easily adapt them to your own keyboard.*
+
 # Quantum Mechanical Keyboard Firmware
 
 [![Current Version](https://img.shields.io/github/tag/qmk/qmk_firmware.svg)](https://github.com/qmk/qmk_firmware/tags)
