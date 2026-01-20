@@ -1,3 +1,20 @@
+**This fork adds the following features:**
+
+- [`f921c04`](https://github.com/Azarattum/QMK/commit/f921c04): Support for per-key RGB configuration with an extended version of [VIA's RGB protocol](https://github.com/the-via/app/blob/80dd7453a2f0a53233cd2c5bcc526847feb17e0e/src/utils/keyboard-api.ts#L372-L384). Full support with OpenRGB can be achieved with [ColorHoster](https://github.com/Azarattum/ColorHoster)
+- [`cb80ac4`](https://github.com/Azarattum/QMK/commit/cb80ac4): `Fn+Esc` puts the keyboard in bootloader mode
+- [`03ee8f3`](https://github.com/Azarattum/QMK/commit/03ee8f3): Full analog report to support [Wooting Analog SDK](https://github.com/WootingKb/wooting-analog-sdk) via [Universal Analog Plugin](https://github.com/AnalogSense/universal-analog-plugin) (based on [Analog Sense fork](https://github.com/AnalogSense/qmk_firmware/))
+- [`b62f71c`](https://github.com/Azarattum/QMK/commit/b62f71c): Simplex noise animation that changes its colors based on current analog profile
+- [`ed646f4`](https://github.com/Azarattum/QMK/commit/ed646f4): Dynamic highlight for non-base keymap layers (dims current effect)
+- [`b713d69`](https://github.com/Azarattum/QMK/commit/b713d69): Full-length Bad Apple backlight animation ([yes, you heard it right](https://youtu.be/G8ZrETE6zp8))
+
+[All the changes](https://github.com/Keychron/qmk_firmware/compare/2025q3...Azarattum:QMK:2025q3_custom) are based on [`2025q3` branch from Keychron](https://github.com/Keychron/qmk_firmware/tree/2025q3).
+
+**Supported keyboards:**
+
+- Lemokey P1 HE
+
+> _The patches are self-contained, so you should be able to easily adapt them to your own keyboard._
+
 # Quantum Mechanical Keyboard Firmware
 
 [![Current Version](https://img.shields.io/github/tag/qmk/qmk_firmware.svg)](https://github.com/qmk/qmk_firmware/tags)
