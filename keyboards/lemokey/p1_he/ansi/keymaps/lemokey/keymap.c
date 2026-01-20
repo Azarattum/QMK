@@ -91,3 +91,62 @@ void via_custom_value_command_kb(uint8_t *data, uint8_t length) {
     }
 }
 #endif // VIA_ENABLE
+
+#include "snled27351-spi.h"
+
+typedef struct {
+    uint8_t pwm_buffer[192];
+    bool    pwm_buffer_dirty;
+    uint8_t led_control_buffer[24];
+    bool    led_control_buffer_dirty;
+} PACKED snled27351_driver_t;
+
+extern snled27351_driver_t driver_buffers[];
+
+#ifndef LAYER_INDICATOR_DIM_FACTOR
+#    define LAYER_INDICATOR_DIM_FACTOR 32
+#endif
+
+static inline RGB get_led_color(uint8_t index) {
+    snled27351_led_t led = g_snled27351_leds[index];
+    uint8_t *buf = driver_buffers[led.driver].pwm_buffer;
+    return (RGB){.r = buf[led.r], .g = buf[led.g], .b = buf[led.b]};
+}
+
+bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    uint8_t layer = get_highest_layer(layer_state);
+    if (layer == 0) return true;
+
+    uint8_t min_val = rgb_matrix_get_val();
+
+    for (uint8_t row = 0; row < MATRIX_ROWS; row++) {
+        for (uint8_t col = 0; col < MATRIX_COLS; col++) {
+            uint8_t index = g_led_config.matrix_co[row][col];
+            if (index < led_min || index >= led_max || index == NO_LED) continue;
+
+            uint16_t keycode = keymap_key_to_keycode(layer, (keypos_t){col, row});
+            RGB color = get_led_color(index);
+
+            if (keycode <= KC_TRANSPARENT) {
+                color.r = color.r * LAYER_INDICATOR_DIM_FACTOR / 255;
+                color.g = color.g * LAYER_INDICATOR_DIM_FACTOR / 255;
+                color.b = color.b * LAYER_INDICATOR_DIM_FACTOR / 255;
+                rgb_matrix_set_color(index, color.r, color.g, color.b);
+            } else {
+                uint8_t max_c = MAX(MAX(color.r, color.g), color.b);
+                if (max_c < min_val && min_val > 0) {
+                    if (max_c > 0) {
+                        uint16_t scale = (uint16_t)min_val * 255 / max_c;
+                        color.r = color.r * scale / 255;
+                        color.g = color.g * scale / 255;
+                        color.b = color.b * scale / 255;
+                    } else {
+                        color = hsv_to_rgb(rgb_matrix_get_hsv());
+                    }
+                    rgb_matrix_set_color(index, color.r, color.g, color.b);
+                }
+            }
+        }
+    }
+    return true;
+}
