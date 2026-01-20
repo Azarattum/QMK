@@ -48,7 +48,8 @@
                 ["Per Key RGB", 23],
                 ["Mix RGB", 24],
                 ["Simplex Noise", 25],
-                ["Direct", 26]
+                ["Bad Apple", 26],
+                ["Direct", 27]
               ]
             },
             {
@@ -65,7 +66,7 @@
               "content": ["id_qmk_rgb_matrix_color", 3, 4]
             },
             {
-              "showIf": "{id_qmk_rgb_matrix_effect} == 26",
+              "showIf": "{id_qmk_rgb_matrix_effect} == 27",
               "label": "Color Palette",
               "type": "color-palette",
               "content": ["id_qmk_rgb_matrix_color", 3, 4]
